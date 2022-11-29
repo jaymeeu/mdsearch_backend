@@ -11,20 +11,18 @@ let dbConnected = false;
 
 const getMongoDB = async () => {
   const MongoClient = mongodb.MongoClient;
-  
   let logConnString = MONGODB_URI.replace(/\/(.*:.*)@/, "//<user>:<password>@");
-
-  console.log(`Connecting to database using ${MONGODB_URI}`);
-
+  console.log(`Connecting to database using ${logConnString}`);
   let db;
   try {
     const client = await MongoClient.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
     db = await client.db("sample_airbnb");
     dbConnected = true;
+    
     console.log("Database is connected and ready to go!");
 
   } catch (e) {
-    console.log(e.toString());
+    console.log(e.toString(), "connection error");
   }
   return db;
 }
