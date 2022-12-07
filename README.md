@@ -1,7 +1,23 @@
-### What i build
+### What i built
 
-I built a beckend with NodeJS(Express) and MongoDB. I implemented the item search with autocomplete feature with MongoDB Atlas
+I built a beckend with NodeJS(Express) and MongoDB. I implemented the item search with autocomplete feature with MongoDB Atlas.
+To see these feature in action checkout the live link below
 
+### App Link
+https://windcnc.netlify.app/
+
+### Link to Source Code
+[Source code frontend](https://github.com/jaymeeu/mdsearch_no_more)
+
+[Source code backend](https://github.com/jaymeeu/mdsearch_backend)
+
+### Get started
+After cloning or forking, run the below command
+```bash
+    npx nodemon .
+```
+
+### How i built it
 The following are steps to implement the project
 
 #### Connecting to mongoDB collection
