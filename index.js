@@ -12,8 +12,11 @@ let dbConnected = false;
 const getMongoDB = async () => {
   const MongoClient = mongodb.MongoClient;
   let logConnString = MONGODB_URI.replace(/\/(.*:.*)@/, "//<user>:<password>@");
+
   console.log(`Connecting to database using ${logConnString}`);
+  
   let db;
+
   try {
     const client = await MongoClient.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
     db = await client.db("sample_airbnb");
@@ -26,7 +29,7 @@ const getMongoDB = async () => {
   }
   return db;
 }
-let db;
+// let db;
 let itemCollection;
 getMongoDB().then(async _db => {
   db = _db;
@@ -37,23 +40,15 @@ let app = express();
 
 app.use(cors());
 
-const category = [{
-  '$project': {
-    'property_type': 1,
-  }
-}]
-
 app.get("/", async (req, res) => {
   let results = [];
   try {
-    results = await itemCollection.find().toArray();
+    results = await itemCollection.find().limit(50).toArray();
   }
   catch (e) {
     console.log(e.toString());
   }
   res.send(results).status(200);
-
-  // res.send({ status: "Ok", dbConnected }).status(200);
 });
 
 //get all categories
